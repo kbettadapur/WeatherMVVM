@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <StackPanel Background="#FF00BFFF">
-        <Label Background="#FFB0C4DE">City:</Label>
+        <Label Background="#FFB0C4DE">City: </Label>
         <TextBox Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Button Background="#FF778899" Command="{Binding LoadForecastCommand}" Content= "Load Forecast"></Button>
         <TextBlock Text="Current Forecast: "></TextBlock>
