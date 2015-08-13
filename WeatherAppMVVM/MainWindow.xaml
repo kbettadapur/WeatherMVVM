@@ -1,0 +1,24 @@
+﻿<Window x:Class="WeatherAppMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WeatherAppMVVM"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel Background="#FF00BFFF">
+        <Label Background="#FFB0C4DE">City:</Label>
+        <TextBox Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Background="#FF778899" Command="{Binding LoadForecastCommand}" Content= "Load Forecast"></Button>
+        <TextBlock Text="Current Forecast: "></TextBlock>
+        <TextBlock Text="Summary: " Foreground="#FFF0FFF0"></TextBlock>
+        <TextBlock Text="{Binding CurrentForecast.ForecastNow.Summary}"  ></TextBlock>
+        <TextBlock Text="Temperature: " Foreground="#FFF0FFF0"></TextBlock>
+        <TextBlock Text="{Binding CurrentForecast.ForecastNow.Temperature}"></TextBlock>
+        <TextBlock Text="Feels Like: " Foreground="#FFF0FFF0"></TextBlock>
+        <TextBlock Text="{Binding CurrentForecast.ForecastNow.ApparentTemperature}"></TextBlock>
+        <TextBlock Text="Wind Speed: " Foreground="#FFF0FFF0"></TextBlock>
+        <TextBlock Text="{Binding CurrentForecast.ForecastNow.WindSpeed}"></TextBlock>
+    </StackPanel>
+    
+</Window>
