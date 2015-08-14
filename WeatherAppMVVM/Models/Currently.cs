@@ -23,6 +23,8 @@ namespace WeatherAppMVVM.Models
         public double Humidity { get; set; }
         [JsonProperty("windSpeed")]
         public double WindSpeed { get; set; }
+        [JsonProperty("precipProbability")]
+        public double RainChance { get; set; }
 
         public DateTime FromUnixTime(long unixTime)
         {

@@ -21,6 +21,10 @@
         <TextBlock Text="{Binding CurrentForecast.ForecastNow.WindSpeed}"></TextBlock>
         <TextBlock Text="Humidity: " Foreground="#FFF0FFF0"></TextBlock>
         <TextBlock Text="{Binding CurrentForecast.ForecastNow.Humidity}"></TextBlock>
+        <TextBlock Text="Humidity: " Foreground="#FFF0FFF0"></TextBlock>
+        <TextBlock Text="{Binding CurrentForecast.ForecastNow.Humidity}"></TextBlock>
+        <TextBlock Text="Chance of rain: " Foreground="#FFF0FFF0"></TextBlock>
+        <TextBlock Text="{Binding CurrentForecast.ForecastNow.RainChance}"></TextBlock>
     </StackPanel>
     
 </Window>
