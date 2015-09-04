@@ -10,9 +10,21 @@ namespace WeatherAppMVVM.Models
     public class Currently
     {
         [JsonProperty("temperature")]
-        public double Temperature { get; set; }
+        public double doubleTemperature { get; set; }
+        public int Temperature
+        {
+            get { return (int)doubleTemperature; }
+            set{ doubleTemperature = value; }
+        }
+
         [JsonProperty("apparentTemperature")]
-        public double ApparentTemperature { get; set; }
+        public double doubleApparentTemperature { get; set; }
+        public int ApparentTemperature
+        {
+            get { return (int)doubleApparentTemperature; }
+            set { doubleApparentTemperature = value; }
+        }
+        
         [JsonProperty("time")]
         public long EnochTime { get; set; }
         [JsonProperty("summary")]
@@ -24,7 +36,13 @@ namespace WeatherAppMVVM.Models
         [JsonProperty("windSpeed")]
         public double WindSpeed { get; set; }
         [JsonProperty("precipProbability")]
-        public double RainChance { get; set; }
+        public double RainChanceDecimal { get; set; }
+        
+
+        public double RainChance
+        {
+            get { return (RainChanceDecimal * 100); }
+        }
 
         public DateTime FromUnixTime(long unixTime)
         {

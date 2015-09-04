@@ -78,7 +78,7 @@
   <ItemGroup>
     <Compile Include="Models\Coordinates.cs" />
     <Compile Include="Models\Currently.cs" />
-    <Compile Include="Models\Forecast.cs" />
+    <Compile Include="Models\ForecastApi.cs" />
     <Compile Include="Models\GeocodingGeometry.cs" />
     <Compile Include="Models\GeocodingResults.cs" />
     <Compile Include="Models\Minutely.cs" />

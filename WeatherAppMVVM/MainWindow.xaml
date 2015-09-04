@@ -5,26 +5,90 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherAppMVVM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <StackPanel Background="#FF00BFFF">
-        <Label Background="#FFB0C4DE">City:</Label>
-        <TextBox Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Button Background="#FF778899" Command="{Binding LoadForecastCommand}" Content= "Load Forecast"></Button>
-        <TextBlock Text="Current Forecast: "></TextBlock>
-        <TextBlock Text="Summary: " Foreground="#FFF0FFF0"></TextBlock>
-        <TextBlock Text="{Binding CurrentForecast.ForecastNow.Summary}"  ></TextBlock>
-        <TextBlock Text="Temperature: " Foreground="#FFF0FFF0"></TextBlock>
-        <TextBlock Text="{Binding CurrentForecast.ForecastNow.Temperature}"></TextBlock>
-        <TextBlock Text="Feels Like: " Foreground="#FFF0FFF0"></TextBlock>
-        <TextBlock Text="{Binding CurrentForecast.ForecastNow.ApparentTemperature}"></TextBlock>
-        <TextBlock Text="Wind Speed: " Foreground="#FFF0FFF0"></TextBlock>
-        <TextBlock Text="{Binding CurrentForecast.ForecastNow.WindSpeed}"></TextBlock>
-        <TextBlock Text="Humidity: " Foreground="#FFF0FFF0"></TextBlock>
-        <TextBlock Text="{Binding CurrentForecast.ForecastNow.Humidity}"></TextBlock>
-        <TextBlock Text="Humidity: " Foreground="#FFF0FFF0"></TextBlock>
-        <TextBlock Text="{Binding CurrentForecast.ForecastNow.Humidity}"></TextBlock>
-        <TextBlock Text="Chance of rain: " Foreground="#FFF0FFF0"></TextBlock>
-        <TextBlock Text="{Binding CurrentForecast.ForecastNow.RainChance}"></TextBlock>
-    </StackPanel>
+        Title="Kirin Weather" Height="350" Width="525">
     
+    <Grid ShowGridLines="True">
+
+        <Grid.Background>
+            <ImageBrush ImageSource="{Binding BackgroundImage}" />
+        </Grid.Background>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        
+            <TextBox Grid.Row="0" 
+                 Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"  
+                 Width="300" 
+                 HorizontalAlignment="Right" 
+                 VerticalAlignment="Center"></TextBox>
+       
+        <Button Grid.Row="0" 
+                Background="#FF778899" 
+                Command="{Binding LoadForecastCommand}" 
+                Content= "Search" 
+                HorizontalAlignment="Right"></Button>
+
+        <TextBlock Grid.Row="1" 
+                   Text="{Binding City}" 
+                   FontSize="20" 
+                   HorizontalAlignment="Center"/>
+
+        <TextBlock Grid.Row="2" 
+                   Text="{Binding CurrentForecast.ForecastNow.Temperature, StringFormat={}{0}°F}" 
+                   FontSize="35" 
+                   HorizontalAlignment="Center"
+                   Foreground="{Binding FontColor}"/>
+        
+        <Grid Grid.Row="3" ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="1" 
+                       Text="{Binding CurrentForecast.ForecastNow.WindSpeed, StringFormat= 'Wind Speed: {0}mph'}" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Grid.Column="2" 
+                       Text="{Binding CurrentForecast.ForecastNow.ApparentTemperature, StringFormat='Feels Like: {0}°F'}" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Grid.Column="3" 
+                       Text="{Binding CurrentForecast.ForecastNow.RainChance, StringFormat='Chance of Rain: {0}%'}" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="4" ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Column="1"
+                       Text="{Binding CurrentForecast.ForecastNow.Humidity, StringFormat= 'Humidity: {0}%'}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            
+            <TextBlock Grid.Column="2" 
+                       Text="{Binding CurrentForecast.ForecastNow.Summary}" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"/>
+        </Grid>
+    
+    </Grid>
+
 </Window>
