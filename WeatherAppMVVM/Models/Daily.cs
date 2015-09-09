@@ -7,9 +7,11 @@ using Newtonsoft.Json;
 
 namespace WeatherAppMVVM.Models
 {
-    public class Minutely
+    public class Daily
     {
-        [JsonProperty("summary")]
-        public string Summary { get; set; }
+        [JsonProperty("data")]
+        public List<DailyData> DailyDataPoints { get; set; }
+
+
     }
 }

@@ -59,9 +59,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Daily.cs" />
+    <Compile Include="Models\DailyData.cs" />
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\WeatherViewModel.cs" />
+    <Compile Include="Views\Background.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,7 +84,6 @@
     <Compile Include="Models\ForecastApi.cs" />
     <Compile Include="Models\GeocodingGeometry.cs" />
     <Compile Include="Models\GeocodingResults.cs" />
-    <Compile Include="Models\Minutely.cs" />
     <Compile Include="Models\Total.cs" />
     <Compile Include="Models\TotalGeocoding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -112,7 +114,31 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
+    <Resource Include="Images\overcast.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clear.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\partlycloudy.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\mostlycloudy.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\drizzle.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dry.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\defaultblue.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

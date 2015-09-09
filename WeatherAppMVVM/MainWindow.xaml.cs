@@ -26,5 +26,15 @@ namespace WeatherAppMVVM
             InitializeComponent();
             DataContext = new WeatherViewModel();
         }
+
+        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void listView_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

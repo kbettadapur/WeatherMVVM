@@ -26,13 +26,24 @@ namespace WeatherAppMVVM.Models
         }
         
         [JsonProperty("time")]
-        public long EnochTime { get; set; }
+        public long UnixTime { get; set; }
+        public string RealTime
+        {
+            get { return FromUnixTime(UnixTime-14400).ToString(); }
+        }
+
         [JsonProperty("summary")]
         public string Summary { get; set; }
         [JsonProperty("dewPoint")]
         public double DewPoint { get; set; }
         [JsonProperty("humidity")]
-        public double Humidity { get; set; }
+        public double HumidityDecimal { get; set; }
+        public double Humidity
+        {
+            get { return HumidityDecimal * 100; }
+        }
+        [JsonProperty("visibility")]
+        public double Visibility { get; set; }
         [JsonProperty("windSpeed")]
         public double WindSpeed { get; set; }
         [JsonProperty("precipProbability")]

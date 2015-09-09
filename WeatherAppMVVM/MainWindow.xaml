@@ -5,28 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherAppMVVM"
         mc:Ignorable="d"
-        Title="Kirin Weather" Height="350" Width="525">
-    
-    <Grid ShowGridLines="True">
+        Title="Kirin Weather" Height="350" Width="710">
 
-        <Grid.Background>
-            <ImageBrush ImageSource="{Binding BackgroundImage}" />
-        </Grid.Background>
-        
+    <Grid ShowGridLines="False">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-            <TextBox Grid.Row="0" 
+
+        <Border Grid.RowSpan="100" Grid.ColumnSpan="100" Background="Black" Opacity="0.7">
+            <Image Source="{Binding BackgroundImage}" Stretch="Fill" />
+        </Border>
+
+        <TextBox Grid.Row="0" 
                  Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"  
                  Width="300" 
                  HorizontalAlignment="Right" 
                  VerticalAlignment="Center"></TextBox>
-       
+
         <Button Grid.Row="0" 
                 Background="#FF778899" 
                 Command="{Binding LoadForecastCommand}" 
@@ -35,7 +38,15 @@
 
         <TextBlock Grid.Row="1" 
                    Text="{Binding City}" 
+                   FontWeight="Bold"
                    FontSize="20" 
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"/>
+
+        <TextBlock Grid.Row="1"
+                   Text="{Binding CurrentForecast.ForecastNow.RealTime}"
+                   FontWeight="Bold"
+                   VerticalAlignment="Bottom"
                    HorizontalAlignment="Center"/>
 
         <TextBlock Grid.Row="2" 
@@ -43,52 +54,177 @@
                    FontSize="35" 
                    HorizontalAlignment="Center"
                    Foreground="{Binding FontColor}"/>
-        
-        <Grid Grid.Row="3" ShowGridLines="True">
+
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="170"/>
                 <ColumnDefinition Width="130"/>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="170"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="1" 
                        Text="{Binding CurrentForecast.ForecastNow.WindSpeed, StringFormat= 'Wind Speed: {0}mph'}" 
+                       FontWeight="Bold"
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center"/>
 
             <TextBlock Grid.Column="2" 
                        Text="{Binding CurrentForecast.ForecastNow.ApparentTemperature, StringFormat='Feels Like: {0}°F'}" 
+                       FontWeight="Bold"
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center"/>
 
             <TextBlock Grid.Column="3" 
                        Text="{Binding CurrentForecast.ForecastNow.RainChance, StringFormat='Chance of Rain: {0}%'}" 
+                       FontWeight="Bold"
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center"/>
         </Grid>
 
-        <Grid Grid.Row="4" ShowGridLines="True">
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="167"/>
                 <ColumnDefinition Width="130"/>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="160"/>
             </Grid.ColumnDefinitions>
-            
+
             <TextBlock Grid.Column="1"
                        Text="{Binding CurrentForecast.ForecastNow.Humidity, StringFormat= 'Humidity: {0}%'}"
+                       FontWeight="Bold"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
-            
+
             <TextBlock Grid.Column="2" 
-                       Text="{Binding CurrentForecast.ForecastNow.Summary}" 
+                       Text="{Binding CurrentForecast.ForecastNow.Summary}"
+                       FontWeight="Bold"
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Column="3"
+                       Text="{Binding CurrentForecast.ForecastNow.Visibility, StringFormat = 'Visibility: {0} miles'}"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+
         </Grid>
-    
+
+        <Grid Grid.Row="6" ShowGridLines="False">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[0].Time}"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[1].Time}"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[2].Time}"/>
+            <TextBlock Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[3].Time}"/>
+            <TextBlock Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[4].Time}"/>
+            <TextBlock Grid.Row="0" Grid.Column="5" HorizontalAlignment="Center" Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[5].Time}"/>
+            <TextBlock Grid.Row="0" Grid.Column="6" HorizontalAlignment="Center" Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[6].Time}"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[0].MinimumTemperature, 
+                        StringFormat= {}{0}°F}" 
+                       Foreground="Blue"
+                       FontSize="10"
+                       Margin="30,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[0].MaximumTemperature, 
+                        StringFormat= {}{0}°F}" 
+                       Foreground="Red"
+                       FontSize="10"
+                       Margin="55,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[1].MinimumTemperature, 
+                        StringFormat= {}{0}°F}" 
+                       Foreground="Blue"
+                       FontSize="10"
+                       Margin="30,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[1].MaximumTemperature, 
+                        StringFormat= {}{0}°F}" 
+                       Foreground="Red"
+                       FontSize="10"
+                       Margin="55,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="2" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[2].MinimumTemperature, 
+                        StringFormat= {}{0}°F}" 
+                       Foreground="Blue"
+                       FontSize="10"
+                       Margin="30,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="2" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[2].MaximumTemperature, 
+                        StringFormat= {}{0}°F}" 
+                       Foreground="Red"
+                       FontSize="10"
+                       Margin="55,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="3" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[3].MinimumTemperature, 
+                        StringFormat= {}{0}°F}" 
+                       Foreground="Blue"
+                       FontSize="10"
+                       Margin="30,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="3" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[3].MaximumTemperature, 
+                        StringFormat= {}{0}°F}" 
+                       Foreground="Red"
+                       FontSize="10"
+                       Margin="55,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="4" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[4].MinimumTemperature, 
+                        StringFormat= {}{0}°F}" 
+                       Foreground="Blue"
+                       FontSize="10"
+                       Margin="30,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="4" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[4].MaximumTemperature, 
+                        StringFormat= {}{0}°F}" 
+                       Foreground="Red"
+                       FontSize="10"
+                       Margin="55,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="5" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[5].MinimumTemperature, 
+                        StringFormat= {}{0}°F}" 
+                       Foreground="Blue"
+                       FontSize="10"
+                       Margin="30,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="5" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[5].MaximumTemperature, 
+                       StringFormat= {}{0}°F}" 
+                       Foreground="Red"
+                       FontSize="10"
+                       Margin="55,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="6" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[6].MinimumTemperature, 
+                        StringFormat= {}{0}°F}" 
+                       Foreground="Blue"
+                       FontSize="10"
+                       Margin="30,0,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="6" 
+                       Text="{Binding CurrentForecast.ForecastDaily.DailyDataPoints[6].MaximumTemperature, 
+                        StringFormat= {}{0}°F}" 
+                       Foreground="Red"
+                       FontSize="10"
+                       Margin="55,0,0,0"/>
+            
+        </Grid>
+
     </Grid>
 
 </Window>
