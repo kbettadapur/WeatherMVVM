@@ -32,6 +32,10 @@ namespace WeatherAppMVVM.Views
             {
                 WeatherViewModel._backgroundImage = "Images/drizzle.jpg";
             }
+            else if (forecast.ForecastNow.Summary == "Light Rain")
+            {
+                WeatherViewModel._backgroundImage = "Images/lightrain.jpg";
+            }
         }
     }
 }

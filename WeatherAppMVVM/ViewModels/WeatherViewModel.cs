@@ -22,8 +22,13 @@ namespace WeatherAppMVVM.ViewModels
             get { return _backgroundImage; }
             set { _backgroundImage = value; }
         }
-
+        public string _dailyForecastText;
+        public string DailyForecastText
+        {
+            get { return _dailyForecastText; }
+        }
         
+            
 
         public WeatherViewModel()
         {
@@ -37,10 +42,12 @@ namespace WeatherAppMVVM.ViewModels
                 var c = ForecastApi.getCoordinates(City);
                 var f = ForecastApi.getForecast(c);
                 CurrentForecast = f;
+                Background.changeBackground(CurrentForecast);
+                _dailyForecastText = "Daily Forecast";
                 OnPropertyChanged("CurrentForecast");
                 OnPropertyChanged("City");
-                Background.changeBackground(CurrentForecast);
                 OnPropertyChanged("BackgroundImage");
+                OnPropertyChanged("DailyForecastText");
             }
         }
     }
