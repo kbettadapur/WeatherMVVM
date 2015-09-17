@@ -13,5 +13,7 @@ namespace WeatherAppMVVM.Models
         public Currently ForecastNow { get; set; }
         [JsonProperty("daily")]
         public Daily ForecastDaily { get; set; }
+        [JsonProperty("hourly")]
+        public Hourly ForecastHourly { get; set; }
     }
 }

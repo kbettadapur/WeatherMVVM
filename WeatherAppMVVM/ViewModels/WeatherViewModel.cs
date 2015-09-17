@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WeatherAppMVVM.Models;
-using WeatherAppMVVM.Views;
+
 
 
 namespace WeatherAppMVVM.ViewModels
@@ -16,19 +16,18 @@ namespace WeatherAppMVVM.ViewModels
         public Total CurrentForecast { get; set; }
         public string City { get; set; }
         public RelayCommand LoadForecastCommand { get; set; }
-        public static string _backgroundImage = "Images/defaultblue.jpg";
-        public string BackgroundImage
-        {
-            get { return _backgroundImage; }
-            set { _backgroundImage = value; }
-        }
+
         public string _dailyForecastText;
         public string DailyForecastText
         {
             get { return _dailyForecastText; }
         }
-        
-            
+
+        public string _hourlyForecastText;
+        public string HourlyForecastText
+        {
+            get { return _hourlyForecastText; }
+        }
 
         public WeatherViewModel()
         {
@@ -42,12 +41,14 @@ namespace WeatherAppMVVM.ViewModels
                 var c = ForecastApi.getCoordinates(City);
                 var f = ForecastApi.getForecast(c);
                 CurrentForecast = f;
-                Background.changeBackground(CurrentForecast);
+                
                 _dailyForecastText = "Daily Forecast";
+                _hourlyForecastText = "Hourly Forecast";
                 OnPropertyChanged("CurrentForecast");
                 OnPropertyChanged("City");
                 OnPropertyChanged("BackgroundImage");
                 OnPropertyChanged("DailyForecastText");
+                OnPropertyChanged("HourlyForecastText");
             }
         }
     }
