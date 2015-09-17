@@ -17,18 +17,19 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="170"/>
             <RowDefinition Height="*"/>
+            
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="7" ShowGridLines="False">
+        <Grid Grid.Row="7" ShowGridLines="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="75"/>
-                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <ListView Name="DailyList" BorderBrush="Transparent" ItemsSource="{Binding CurrentForecast.ForecastDaily.DailyDataPoints}">
@@ -46,7 +47,7 @@
                 <ListView Name="DailyHigh" BorderBrush="Transparent" ItemsSource="{Binding CurrentForecast.ForecastDaily.DailyDataPoints}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding MaximumTemperature, StringFormat='Hi: {0}°F'}" FontWeight="ExtraBold" Foreground="Red"/>
+                            <TextBlock Text="{Binding MaximumTemperature, StringFormat='Hi: {0}'}" FontWeight="ExtraBold" Foreground="Red"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -56,7 +57,17 @@
                 <ListView Name="DailyLow" BorderBrush="Transparent" ItemsSource="{Binding CurrentForecast.ForecastDaily.DailyDataPoints}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding MinimumTemperature, StringFormat='Lo: {0}°F'}" FontWeight="ExtraBold" Foreground="Blue"/>
+                            <TextBlock Text="{Binding MinimumTemperature, StringFormat='Lo: {0}'}" FontWeight="ExtraBold" Foreground="Blue"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Column="3">
+                <ListView Name="DailySummary" BorderBrush="Transparent" ItemsSource="{Binding CurrentForecast.ForecastDaily.DailyDataPoints}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Summary}" FontWeight="ExtraBold"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -65,7 +76,7 @@
         </Grid>
 
         <Border Grid.RowSpan="100" Grid.ColumnSpan="100" Background="Black" Opacity="0.5">
-            <Image Source="{Binding BackgroundImage}" Stretch="Fill" />
+            <Image Source="Images/Background/defaultblue.jpg" Stretch="Fill" />
         </Border>
 
         <TextBox Grid.Row="0" 
