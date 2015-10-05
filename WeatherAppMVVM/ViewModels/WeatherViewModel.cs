@@ -13,6 +13,11 @@ namespace WeatherAppMVVM.ViewModels
 {
     public class WeatherViewModel : ViewModel
     {
+        public WeatherViewModel()
+        {
+            LoadForecastCommand = new RelayCommand(LoadForecast);
+        }
+
         public Total CurrentForecast { get; set; }
         public string City { get; set; }
         public RelayCommand LoadForecastCommand { get; set; }
@@ -29,10 +34,7 @@ namespace WeatherAppMVVM.ViewModels
             get { return _hourlyForecastText; }
         }
 
-        public WeatherViewModel()
-        {
-            LoadForecastCommand = new RelayCommand(LoadForecast);
-        }
+                
 
         private void LoadForecast(object parameter)
         {
@@ -46,7 +48,7 @@ namespace WeatherAppMVVM.ViewModels
                 _hourlyForecastText = "Hourly Forecast";
                 OnPropertyChanged("CurrentForecast");
                 OnPropertyChanged("City");
-                OnPropertyChanged("BackgroundImage");
+                OnPropertyChanged("Icon");
                 OnPropertyChanged("DailyForecastText");
                 OnPropertyChanged("HourlyForecastText");
             }

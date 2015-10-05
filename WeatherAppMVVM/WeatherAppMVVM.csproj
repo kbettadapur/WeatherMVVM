@@ -110,9 +110,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Background\defaultblue.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -120,6 +117,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\partlycloudyicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\defaultblue.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rainicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clearicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cloudyicon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,171 +7,144 @@
         mc:Ignorable="d"
         Title="Kirin Weather" Height="550" Width="710">
 
-    <Grid ShowGridLines="False">
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="*"/>
+    <ScrollViewer>
+        <Grid ShowGridLines="True">
             
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="7">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="320"/>
+                <RowDefinition Height="40"/>
+
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <ListView Name="DailyList" BorderBrush="Transparent" ItemsSource="{Binding CurrentForecast.ForecastDaily.DailyDataPoints}">
 
+            <Grid Grid.Row="7">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ListView Name="DailyDataList" BorderBrush="Transparent" ItemsSource="{Binding CurrentForecast.ForecastDaily.DailyDataPoints}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Time}" FontWeight="ExtraBold"/>
-
-                        </DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="75"/>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Time}" Grid.Column="0" FontWeight="ExtraBold"/>   
+                                <TextBlock Text="{Binding MaximumTemperature, StringFormat='Hi: {0}'}" Grid.Column="1" Foreground="Red" FontWeight="ExtraBold"/>
+                                <TextBlock Text="{Binding MinimumTemperature, StringFormat='Lo: {0}'}" Grid.Column="2" Foreground="Blue" FontWeight="ExtraBold"/>
+                                <Image Source="{Binding IconSource}" Grid.Column="3" Height="33" Width="33"/>
+                                <TextBlock Text="{Binding Summary}" Grid.Column="4" FontWeight="ExtraBold"/>                           
+                            </Grid>
+                       </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
 
-            <Grid Grid.Column="1">
-                <ListView Name="DailyHigh" BorderBrush="Transparent" ItemsSource="{Binding CurrentForecast.ForecastDaily.DailyDataPoints}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding MaximumTemperature, StringFormat='Hi: {0}'}" FontWeight="ExtraBold" Foreground="Red"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
+            <Border Grid.RowSpan="100" Grid.ColumnSpan="100" Background="Black" Opacity="0.5">
+                <Image Source="Images/defaultblue.jpg" Stretch="Fill" />
+            </Border>
 
-            <Grid Grid.Column="2">
-                <ListView Name="DailyLow" BorderBrush="Transparent" ItemsSource="{Binding CurrentForecast.ForecastDaily.DailyDataPoints}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding MinimumTemperature, StringFormat='Lo: {0}'}" FontWeight="ExtraBold" Foreground="Blue"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
-
-            <Grid Grid.Column="3">
-                <ListView Name="DailySummary" BorderBrush="Transparent" ItemsSource="{Binding CurrentForecast.ForecastDaily.DailyDataPoints}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Summary}" FontWeight="ExtraBold"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
-
-        </Grid>
-
-        <Border Grid.RowSpan="100" Grid.ColumnSpan="100" Background="Black" Opacity="0.5">
-            <Image Source="Images/Background/defaultblue.jpg" Stretch="Fill" />
-        </Border>
-
-        <TextBox Grid.Row="0" 
+            <TextBox Grid.Row="0" 
                  Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"  
                  Width="300" 
                  HorizontalAlignment="Right" 
                  VerticalAlignment="Center"></TextBox>
 
-        <Button Grid.Row="0" 
+            <Button Grid.Row="0" 
                 Background="#FF778899" 
                 Command="{Binding LoadForecastCommand}" 
                 Content= "Search" 
                 HorizontalAlignment="Right"></Button>
 
-        <TextBlock Grid.Row="1" 
+            <TextBlock Grid.Row="1" 
                    Text="{Binding City}" 
                    FontWeight="Bold"
                    FontSize="20" 
                    VerticalAlignment="Top"
                    HorizontalAlignment="Center"/>
 
-        <TextBlock Grid.Row="1"
+            <TextBlock Grid.Row="1"
                    Text="{Binding CurrentForecast.ForecastNow.RealTime}"
                    FontWeight="Bold"
                    VerticalAlignment="Bottom"
                    HorizontalAlignment="Center"/>
 
-        <TextBlock Grid.Row="2" 
+            <TextBlock Grid.Row="2" 
                    Text="{Binding CurrentForecast.ForecastNow.Temperature, StringFormat={}{0}°F}" 
                    FontSize="35" 
                    HorizontalAlignment="Center"
                    Foreground="{Binding FontColor}"/>
 
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="170"/>
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="170"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="170"/>
+                </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="1" 
+                <TextBlock Grid.Column="1" 
                        Text="{Binding CurrentForecast.ForecastNow.WindSpeed, StringFormat= 'Wind Speed: {0}mph'}" 
                        FontWeight="Bold"
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center"/>
 
-            <TextBlock Grid.Column="2" 
+                <TextBlock Grid.Column="2" 
                        Text="{Binding CurrentForecast.ForecastNow.ApparentTemperature, StringFormat='Feels Like: {0}°F'}" 
                        FontWeight="Bold"
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center"/>
 
-            <TextBlock Grid.Column="3" 
+                <TextBlock Grid.Column="3" 
                        Text="{Binding CurrentForecast.ForecastNow.RainChance, StringFormat='Chance of Rain: {0}%'}" 
                        FontWeight="Bold"
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center"/>
-        </Grid>
+            </Grid>
 
-        <Grid Grid.Row="4" ShowGridLines="False">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="167"/>
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="160"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="4" ShowGridLines="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="167"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="160"/>
+                </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="1"
+                <TextBlock Grid.Column="1"
                        Text="{Binding CurrentForecast.ForecastNow.Humidity, StringFormat= 'Humidity: {0}%'}"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
 
-            <TextBlock Grid.Column="2" 
+                <TextBlock Grid.Column="2" 
                        Text="{Binding CurrentForecast.ForecastNow.Summary}"
                        FontWeight="Bold"
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center"/>
 
-            <TextBlock Grid.Column="3"
+                <TextBlock Grid.Column="3"
                        Text="{Binding CurrentForecast.ForecastNow.Visibility, StringFormat = 'Visibility: {0} miles'}"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
 
+            </Grid>
+
+            <TextBlock Grid.Row="6" Text="{Binding DailyForecastText}" FontSize="20"/>
+            <TextBlock Grid.Row="8" Text="{Binding HourlyForecastText}" FontSize="20"/>
+
         </Grid>
-
-        <TextBlock Grid.Row="6" Text="{Binding DailyForecastText}" FontSize="20"/>
-        
-        
-            
-
-    </Grid>
+    </ScrollViewer>
 
 </Window>

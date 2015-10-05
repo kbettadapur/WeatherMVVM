@@ -39,9 +39,29 @@ namespace WeatherAppMVVM.Models
             get { return _summary + "\n"; }
             set { _summary = value; }
         }
-        
 
+        [JsonProperty("icon")]
+        public string _iconSource { get; set; }
+        public string IconSource
+        {
+            get { return iconSetter(_iconSource); }
+            set { _iconSource = value; }
+        }
         
+        public string iconSetter(string icon)
+        {
+            if (icon == "clear-day")
+                return "Images/clearicon.png";
+            else if (icon == "rain")
+                return "Images/rainicon.png";
+            else if (icon == "partly-cloudy-day")
+                return "Images/partlycloudyicon.png";
+            else if (icon == "cloudy")
+                return "Images/cloudyicon.png";
+            else
+                return null;
+            
+        }
 
         public DateTime FromUnixTime(long unixTime)
         {
